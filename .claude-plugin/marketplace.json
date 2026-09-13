@@ -1,0 +1,16 @@
+{
+  "name": "chatty-para-claude",
+  "owner": {
+    "name": "Chatty",
+    "email": "axel@letschatty.com"
+  },
+  "metadata": {
+    "description": "El criterio para operar el WhatsApp del negocio con el conector de Chatty."
+  },
+  "plugins": [
+    {
+      "name": "chatty",
+      "source": "./plugins/chatty"
+    }
+  ]
+}
