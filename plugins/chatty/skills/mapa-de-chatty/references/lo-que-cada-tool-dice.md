@@ -16,6 +16,8 @@ Es la cola que escribe un barrido automático leyendo señales de los chats, no 
 
 ⚠️ `nunca_respondido` no significa "nunca les respondimos". Significa que el último mensaje del cliente quedó sin respuesta y que ningún workflow corrió nunca sobre ese chat, o sea que nadie los va a alcanzar salvo que lo haga una persona. En empresas reales, muchos de esos chats tienen meses o años de conversación atendida. Para afirmar que alguien realmente nunca recibió respuesta hay que leer el hilo y confirmar que no hay ningún mensaje entrante después de nuestro primer saliente real, contando sólo mensajes reales y nunca los de `type: "central"`, que son notas del sistema ("chat archivado", "workflow agregado") que el cliente jamás vio.
 
+⚠️ Y antes de interpretar cualquier conteo de esta tool, leé la configuración. Es habitual que la etapa terminal de un embudo, o el workflow de cierre automático, se llamen casi igual que un motivo de la cola y produzcan exactamente esos chats: lo que parece un abandono masivo suele ser el final diseñado del propio recorrido de la empresa. Si el nombre de una etapa o de un workflow se parece sospechosamente al motivo, escribilo como pregunta para el dueño y no como diagnóstico.
+
 ## `pendientes_detail(pendiente_id, tail)`
 
 El hilo completo (más viejo primero, sin notificaciones del sistema), lo que ya está programado para salir, qué workflows corrieron, la sugerencia pendiente si hay, el estado CRM del chat (etiquetas, productos, etapa del embudo) y `free_text_window`. Es el único lugar de las 17 donde ves etiquetas de a un chat sin gastar un `chat_ver`.
@@ -26,11 +28,13 @@ Previews de los chats sin leer, ordenados por lo más reciente, con nombre, text
 
 ## `chat_ver(chat_id, tail)`
 
-Contacto (etiquetas, productos, ventas) más el hilo. Caro y puntual: sirve para contestar una pregunta concreta, no para caracterizar a la empresa.
+Contacto (etiquetas, productos, ventas) más el hilo. Caro y puntual: sirve para contestar una pregunta concreta, no para caracterizar a la empresa. Las etiquetas y los productos vienen del contacto, o sea de a un chat: no hay catálogo de etiquetas ni de productos en ninguna de las 17, así que lo que se puede nombrar con certeza es lo que aparezca en la configuración.
 
 ## `embudos_ver(funnel_id)`
 
 Por etapa: id, nombre, orden, si cierra el embudo, y `al_entrar` con los efectos concretos y los ids resueltos a nombres.
+
+**Las etapas en orden SON la escalera comercial de la empresa**, y los nombres que les puso dicen cómo entiende su propio recorrido, desde el primer contacto hasta el cierre o el descarte. Leelas como retrato del negocio y no sólo como estructura de datos: es de las dos llamadas que más cuentan del mapa. Ojo con la etapa terminal, porque suele explicar un pico raro en la cola de pendientes.
 
 - `puede_enviar_mensajes: true` quiere decir que mover un chat ahí puede terminar en un mensaje al cliente. Tratá ese movimiento como una acción hacia afuera.
 - `configuracion_leida: false` quiere decir que no se pudo leer la configuración entera, así que "no tiene automatizaciones" NO quedó establecido. En ese caso `puede_enviar_mensajes` viene en `true` a propósito: suponer que el silencio es seguro es exactamente como se le manda un mensaje a alguien sin querer. Las etapas que fallaron están en `resolucion_incompleta`.
@@ -38,7 +42,11 @@ Por etapa: id, nombre, orden, si cierra el embudo, y `al_entrar` con los efectos
 
 ## `automatizaciones_ver()`
 
-Los workflows que existen, con id, nombre y descripción. El contenido de los pasos vive en otro servicio de Chatty que este conector no habla.
+Los workflows que existen, con id, nombre y descripción. **Es mucho más que una lista de nombres, y leerla como una lista de nombres es el error más caro del mapa.** La `descripcion` la escribió la propia empresa, y ahí suele estar la lógica comercial entera: qué se manda, en qué orden, con qué etiqueta se gatilla, a las cuántas horas del paso anterior, en qué ventana horaria, qué agente de IA se asigna, qué frena la secuencia y qué workflow se encadena después. Junto con `embudos_ver`, es la mitad del retrato del negocio, y sale sin abrir una sola conversación de un cliente.
+
+Lo único que NO está es el texto literal que le llega al cliente: el contenido de los pasos vive en otro servicio de Chatty que este conector no habla. O sea que la descripción te dice qué hace el workflow, no qué lee la persona. Cuando importe la palabra exacta, preguntale al dueño en vez de adivinar por el nombre.
+
+Una descripción vacía o un nombre críptico también son un dato: anotalo como "sin describir" y preguntalo, no lo completes vos.
 
 ## `programados_ver(chat_id)`
 
