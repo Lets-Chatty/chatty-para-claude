@@ -58,3 +58,32 @@ es el único camino que reproduce lo que le pasa a alguien de afuera.
 - La tabla de tools de sólo lectura de `mapa-de-chatty` **sí** es un contrato
   explícito y se mantiene a mano: es lo que impide que un diagnóstico le mande
   un WhatsApp a la cartera del dueño.
+
+## Sin bump de versión, el cambio no le llega a nadie
+
+⚠️ **Un cambio en una skill que no venga con un `version` nuevo en
+`plugins/chatty/.claude-plugin/plugin.json` NO llega a quien ya tiene el plugin
+instalado.** `claude plugin marketplace update` refresca el clon del
+marketplace, pero el instalador compara la versión y, si es la misma, deja el
+cache como está. El resultado es el peor posible para depurar: el repo tiene el
+contenido nuevo, el marketplace local también, y la skill que se carga sigue
+siendo la vieja.
+
+Pasó el 2026-09-14: se reescribió entera la skill del mapa, se pusheó, el dueño
+la corrió, y obtuvo la versión anterior. Se descubrió comparando una frase
+distintiva del contenido nuevo contra el archivo que vive en
+`~/.claude/plugins/cache/`.
+
+**Cómo verificar de verdad qué se va a cargar**, que no es mirar el repo:
+
+```bash
+grep -c "<una frase distintiva del contenido nuevo>" \
+  ~/.claude/plugins/cache/chatty-para-claude/chatty/*/skills/<skill>/SKILL.md
+```
+
+El número de versión está en la ruta del cache, así que un bump crea una carpeta
+nueva y el problema desaparece solo.
+
+⚠️ `claude plugin install` **no acepta `--force`** (al menos hasta la 2.1.72).
+Reinstalar sobre la misma versión no sirve: o se bumpea, o se desinstala y se
+vuelve a instalar.

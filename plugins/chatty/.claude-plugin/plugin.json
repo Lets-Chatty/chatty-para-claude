@@ -1,12 +1,18 @@
 {
   "name": "chatty",
   "description": "Criterio para operar el WhatsApp del negocio con el conector de Chatty: primero el mapa de la empresa (sólo lectura), después las rutinas que el dueño escribe con sus propios criterios.",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": {
     "name": "Chatty",
     "email": "axel@letschatty.com"
   },
   "homepage": "https://letschatty.com",
   "repository": "https://github.com/Lets-Chatty/chatty-para-claude",
-  "keywords": ["chatty", "whatsapp", "mcp", "ventas", "rutinas"]
+  "keywords": [
+    "chatty",
+    "whatsapp",
+    "mcp",
+    "ventas",
+    "rutinas"
+  ]
 }
