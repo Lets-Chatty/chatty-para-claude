@@ -105,13 +105,19 @@ anuncios al lugar equivocado es el peor resultado posible de este repo. La únic
 fuente válida es la documentación de Meta, que dice textualmente que el servidor
 está hospedado en esa dirección.
 
-**Por qué no lleva `client-id`**, que es lo primero que alguien va a querer
-agregarle: Meta documenta el comando con un `<META_APP_ID>` para quien tiene app
-propia de desarrollador, pero el servidor también anuncia registro dinámico de
-cliente en su metadata OAuth (`registration_endpoint` en
-`/.well-known/oauth-authorization-server/ads` de Facebook), y ese es el camino
-que sirve para un cliente que no es desarrollador ni quiere serlo. Ponerle un
-App ID inventado o el de otro lo rompería para todos.
+**Por qué no lleva `client-id`, que es lo primero que alguien le va a querer
+agregar:** el camino sin app propia es el camino principal y el que sirve para
+un cliente. El Help Center de Meta lista a Claude Code entre los agentes
+soportados y, para explicar cómo se conecta, linkea derecho a la instrucción de
+servidor HTTP remoto de la documentación de Claude Code, la que no lleva App ID.
+El `<META_APP_ID>` que aparece en el ejemplo de la documentación para
+desarrolladores es para quien YA tiene app propia, no es el requisito general, y
+encima ese camino pasa por la revisión de la app, que es justo donde se traba el
+permiso de lectura de anuncios. Del lado técnico el servidor anuncia registro
+dinámico de cliente (`registration_endpoint` en
+`/.well-known/oauth-authorization-server/ads` de Facebook), así que el cliente
+se registra solo. Ponerle un App ID inventado o el de otro lo rompería para
+todos.
 
 Si no lo autoriza, el servidor queda pendiente de autenticación y sus tools no
 aparecen: no rompe la sesión ni el resto del plugin. Las skills tratan esa

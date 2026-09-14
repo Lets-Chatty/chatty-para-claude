@@ -36,7 +36,9 @@ El orden importa: sin mapa, la entrevista de la rutina es un formulario en blanc
 
 Chatty sabe todo lo que pasó en la conversación y nada de lo que costó traerla. El gasto de los anuncios vive en Meta, y es lo único grande que a Chatty le falta para que la pregunta "cuánto me sale una venta" tenga respuesta.
 
-Meta publica su propio servidor para esto, hospedado por Meta, en `https://mcp.facebook.com/ads`. Este plugin lo trae declarado para ahorrarte el paso, pero **es de Meta y no de Chatty**: Chatty no ve tus anuncios, no guarda nada de eso, y si algo falla de ese lado no lo podemos arreglar nosotros. Se autoriza en el navegador con tu propia cuenta de Meta Business, y no tenés que generar ni pegar ningún token en ningún lado.
+Meta publica su propio servidor para esto, hospedado por Meta, en `https://mcp.facebook.com/ads`. Este plugin lo trae declarado para ahorrarte el paso, pero **es de Meta y no de Chatty**: Chatty no ve tus anuncios, no guarda nada de eso, y si algo falla de ese lado no lo podemos arreglar nosotros.
+
+**Se autoriza con tu propia cuenta, y no necesitás ser desarrollador ni tener una app de Meta.** Meta lista a Claude Code entre los agentes soportados y la conexión es la de cualquier servidor remoto: la primera vez que se use, se abre el diálogo de Facebook Login for Business, entrás con tu cuenta y aprobás los permisos que te pide. No hay token que generar ni que pegar en ningún lado, y no pasa por la revisión de ninguna app, que es lo que suele trabar este tipo de integración.
 
 **Si no lo autorizás no se rompe nada.** Queda ahí sin conectar, figura como pendiente de autenticación en `/mcp`, y sus herramientas simplemente no aparecen. Las skills tratan esa ausencia igual que la del calendario: es información sobre tu cuenta, no un error, y nunca se te promete un informe que dependa de algo que no está.
 
@@ -47,12 +49,20 @@ claude mcp add --transport http meta-ads https://mcp.facebook.com/ads
 claude mcp remove meta-ads
 ```
 
-Si tu empresa usa una app propia de Meta, Meta documenta esta otra forma, que además pide configurar la redirect URL en los ajustes de Facebook Login for Business:
+⚠️ **Esa URL es la única.** Buscando vas a encontrar varios servidores de terceros con nombres parecidos, que te piden generar un token de tu cuenta publicitaria y pegárselo. Ninguno es de Meta. Conectar la cuenta de anuncios al lugar equivocado es la peor cosa que puede salir mal acá, así que si la dirección no es exactamente la de arriba, no sigas.
+
+### Si te preocupa que te toquen los anuncios
+
+Es una preocupación razonable y la respuesta no depende de nosotros: el control lo pone Meta, del lado de tu cuenta. Si tenés control total de un portafolio comercial, en los ajustes de Meta Business Suite, abajo de Integraciones, hay una sección del servidor MCP donde permitís o bloqueás acciones por cuenta publicitaria, incluido poner un tope de presupuesto. El servidor de Meta hace cumplir esas reglas, así que un bloqueo ahí vale más que cualquier promesa de este lado. Y por si eso fuera poco, los anuncios que se crean desde un agente nacen pausados hasta que vos los prendas.
+
+Para lo que hace este plugin alcanza con lectura: lo que nos falta es el gasto.
+
+### Nota al pie: sólo si ya tenés una app de Meta propia
+
+No es el camino recomendado y no hace falta para nada de lo anterior. Si tu empresa está obligada a pasar por su propia app de desarrollador, Meta documenta esta otra forma, que además pide configurar la redirect URL en los ajustes de Facebook Login for Business:
 
 ```
 claude mcp add --transport http --client-id <META_APP_ID> meta-ads https://mcp.facebook.com/ads
 ```
-
-⚠️ **Esa URL es la única.** Buscando vas a encontrar varios servidores de terceros con nombres parecidos, que te piden generar un token de tu cuenta publicitaria y pegárselo. Ninguno es de Meta. Conectar la cuenta de anuncios al lugar equivocado es la peor cosa que puede salir mal acá, así que si la dirección no es exactamente la de arriba, no sigas.
 
 Todavía no hay una skill que cruce el gasto con las ventas: falta una pieza del lado de Chatty para que la atribución no quede coja. Por ahora el conector queda disponible y explicado, que es lo honesto.
