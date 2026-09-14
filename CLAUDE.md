@@ -87,3 +87,32 @@ nueva y el problema desaparece solo.
 ⚠️ `claude plugin install` **no acepta `--force`** (al menos hasta la 2.1.72).
 Reinstalar sobre la misma versión no sirve: o se bumpea, o se desinstala y se
 vuelve a instalar.
+
+## El conector de Meta va declarado en el `plugin.json`
+
+El plugin declara un servidor MCP remoto, el de Meta Ads, en el campo `mcpServers`
+del manifiesto. Es lo único que trae el plugin además de skills, y existe porque
+el gasto de publicidad es lo único grande que Chatty no sabe.
+
+```json
+"mcpServers": { "meta-ads": { "type": "http", "url": "https://mcp.facebook.com/ads" } }
+```
+
+⚠️ **Esa URL no se toca, no se deduce y no se reemplaza por ninguna alternativa.**
+Hay varios servidores de terceros con nombres parecidos que piden un token de la
+cuenta publicitaria; ninguno es de Meta, y un cliente conectando su cuenta de
+anuncios al lugar equivocado es el peor resultado posible de este repo. La única
+fuente válida es la documentación de Meta, que dice textualmente que el servidor
+está hospedado en esa dirección.
+
+**Por qué no lleva `client-id`**, que es lo primero que alguien va a querer
+agregarle: Meta documenta el comando con un `<META_APP_ID>` para quien tiene app
+propia de desarrollador, pero el servidor también anuncia registro dinámico de
+cliente en su metadata OAuth (`registration_endpoint` en
+`/.well-known/oauth-authorization-server/ads` de Facebook), y ese es el camino
+que sirve para un cliente que no es desarrollador ni quiere serlo. Ponerle un
+App ID inventado o el de otro lo rompería para todos.
+
+Si no lo autoriza, el servidor queda pendiente de autenticación y sus tools no
+aparecen: no rompe la sesión ni el resto del plugin. Las skills tratan esa
+ausencia igual que la de las tools de calendario, y ese paralelo es deliberado.

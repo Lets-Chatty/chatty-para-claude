@@ -43,6 +43,8 @@ La mayoría de las tools del conector escriben o le mandan mensajes a clientes r
 
 **Si alguna de las 17 no aparece en tu listado de tools, eso es información y no un error.** El servidor esconde del listado lo que esta empresa no puede usar: las dos de calendario no se ofrecen cuando la empresa no tiene un calendario de Google atado, y hay familias enteras que dependen de lo que la empresa tenga contratado. Anotalo en el mapa como "no disponible", no lo llames igual para ver qué pasa, y no le prometas al dueño una rutina que dependa de eso.
 
+**Lo mismo vale para las tools de Meta Ads, que son de otro conector y no de este.** Chatty sabe lo que pasó en la conversación y no lo que costó traerla: el gasto de los anuncios vive en Meta, y el dueño lo trae con el conector propio de Meta, que se autoriza por separado con su cuenta de Meta Business. Si esas tools no están, es porque no lo autorizó, y no hay nada roto. Anotá en el inventario si el gasto está disponible o no, y si no lo está, no armes ningún razonamiento de costo por venta: decí que esa pregunta necesita ese conector.
+
 ## El retrato del negocio sale de la configuración, no de leer conversaciones
 
 Este es el hallazgo que gobierna toda la skill, y es contraintuitivo, así que va explícito.
@@ -163,6 +165,7 @@ Relevado el <fecha>. Corregilo a mano cuando algo no sea así: este archivo le g
 - Agenda: <n> recordatorios
 - Borradores de IA frenados: <n>, el más viejo de <cuándo>
 - Calendario: atado / no atado
+- Gasto de anuncios (conector de Meta, aparte de este): disponible / no autorizado
 - Workflows: <n>
 
 ## 3. Qué dispara qué

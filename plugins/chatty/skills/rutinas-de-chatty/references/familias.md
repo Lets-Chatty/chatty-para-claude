@@ -40,6 +40,8 @@ Es la familia que más cambia decisiones fuera de Chatty (dónde poner la plata 
 
 **Ojo con el techo:** no hay agregado por fuente ni por anuncio en estas 17 tools, así que todo número sale de una muestra acotada y se escribe como muestra ("de los 20 que miré"), nunca como distribución de la empresa. Si el dueño quiere esto de verdad y en serio, la respuesta honesta es que se mira en las pantallas de Chatty, no acá.
 
+**Y el otro techo, el que más duele: acá no está lo que costó.** Chatty ve la conversación, no la factura de publicidad. El gasto vive en Meta y llega por el conector de Meta, que es de Meta, se autoriza aparte con la cuenta de Meta Business del dueño, y puede perfectamente no estar autorizado. Si no está, sus tools no figuran en tu listado, y eso es información y no una falla: decíselo y no le prometas un costo por venta. Un número de rentabilidad construido sobre un gasto supuesto es peor que no darle ninguno, porque se usa para decidir dónde poner la plata.
+
 ## Higiene del embudo
 
 **Contesta:** qué está guardado en el lugar equivocado.

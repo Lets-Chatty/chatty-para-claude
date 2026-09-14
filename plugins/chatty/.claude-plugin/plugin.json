@@ -14,5 +14,11 @@
     "mcp",
     "ventas",
     "rutinas"
-  ]
+  ],
+  "mcpServers": {
+    "meta-ads": {
+      "type": "http",
+      "url": "https://mcp.facebook.com/ads"
+    }
+  }
 }
