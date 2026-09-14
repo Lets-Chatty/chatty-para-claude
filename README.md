@@ -1,10 +1,12 @@
 # Chatty para Claude
 
-El conector de Chatty le da a tu Claude la capacidad de operar el WhatsApp del negocio: 45 herramientas sobre la cola de pendientes, los embudos, las plantillas, las campañas y la agenda. Este plugin le da el criterio, que es la otra mitad: qué preguntarle a esos datos, qué campos mienten si los leés rápido, y cómo escribir rutinas que sigan sirviendo al mes siguiente.
+El conector de Chatty le da a tu Claude la capacidad de operar el WhatsApp del negocio: cuarenta y pico de herramientas sobre la cola de pendientes, los embudos, las plantillas, las campañas y la agenda. Este plugin le da el criterio, que es la otra mitad: qué preguntarle a esos datos, qué campos mienten si los leés rápido, y cómo escribir rutinas que sigan sirviendo al mes siguiente.
 
 ## Antes de instalar
 
 Necesitás el conector de Chatty ya conectado en tu Claude. El plugin no trae herramientas ni credenciales: es criterio sobre las herramientas que ya tenés. Sin el conector se instala igual y no tiene nada sobre qué trabajar.
+
+No esperes un número redondo de herramientas: el servidor esconde del listado lo que tu empresa no puede usar (el calendario, por ejemplo, si no tenés uno atado), así que tu conexión va a ofrecer menos de las que hay registradas. Contarlas es la primera línea del mapa, y el faltante es información sobre tu cuenta, no una conexión rota.
 
 ## Instalación
 

@@ -9,7 +9,7 @@ El conector te da capacidad sobre el WhatsApp de trabajo del dueño y ninguna id
 
 ## Regla dura: acá sólo se lee
 
-De las 45 tools del conector, 28 escriben o le mandan mensajes a clientes reales. Un diagnóstico que manda un WhatsApp es inaceptable: el dueño te dejó entrar a mirar su negocio, no a hablarle a su cartera.
+La mayoría de las tools del conector escriben o le mandan mensajes a clientes reales. Un diagnóstico que manda un WhatsApp es inaceptable: el dueño te dejó entrar a mirar su negocio, no a hablarle a su cartera.
 
 **La lista autorizada no se inventa ni se deduce por el nombre.** Es esta tabla, que espeja el mismo recorte que aplica el servidor cuando una conexión es de sólo lectura. Son estas 17:
 
@@ -33,7 +33,7 @@ De las 45 tools del conector, 28 escriben o le mandan mensajes a clientes reales
 | `calendar_list_events` | Turnos ya agendados, si hay calendario atado |
 | `calendar_check_availability` | Huecos libres reales, si hay calendario atado |
 
-**Lo que hace que esto importe de verdad:** el servidor sólo bloquea las otras 28 cuando el token de la conexión tiene el permiso `readonly`, y una conexión normal NO lo tiene. O sea que durante el mapa no hay ninguna red abajo: la única barrera sos vos. Tratá la lista como un contrato, no como una sugerencia, y ante la duda de si una tool escribe, no la llames.
+**Lo que hace que esto importe de verdad:** el servidor sólo bloquea las que escriben cuando el token de la conexión tiene el permiso `readonly`, y una conexión normal NO lo tiene. O sea que durante el mapa no hay ninguna red abajo: la única barrera sos vos. Tratá la lista como un contrato, no como una sugerencia, y ante la duda de si una tool escribe, no la llames.
 
 `pendientes_sweep_now` es la única de la lista que escribe, y está adentro a propósito: escribe en nuestra propia cola y no le manda nada a nadie. Lo peor que puede hacer es mostrarle al dueño un chat que ya estaba ahí.
 
@@ -43,7 +43,7 @@ De las 45 tools del conector, 28 escriben o le mandan mensajes a clientes reales
 
 Una empresa grande tiene mucha data y vos pagás cada token que traés. Todo lo que sigue está pensado para traer agregados, no montañas de filas.
 
-**1. Contá tus propias tools antes de llamar a ninguna.** Cuántas tenés y cuáles de las 17 faltan. Eso ya es la primera línea del inventario.
+**1. Contá tus propias tools antes de llamar a ninguna.** Cuántas tenés y cuáles de las 17 faltan. Eso ya es la primera línea del inventario. El total te va a dar menos que las que el servidor tiene registradas, y está bien: esconde del listado lo que esta empresa no puede usar. Escribí el número que contaste vos, nunca uno de memoria ni de otro documento.
 
 **2. El tamaño real de la cola.** `pendientes_list(limit=5, only_new=False)`. El truco es que los agregados viajan en `summary` (`summary.total` / `total_matching` y `summary.by_reason`), no en las filas, así que pedir cinco filas te da los mismos números que pedir doscientas y cuesta cuarenta veces menos. Leé siempre `returned` y `truncated` antes de decir un número en voz alta: `truncated: true` significa que las filas son un pedazo, nunca que la cola es del tamaño de lo que podés contar.
 
