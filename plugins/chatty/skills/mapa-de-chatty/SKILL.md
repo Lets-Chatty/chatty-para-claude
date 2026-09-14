@@ -1,6 +1,6 @@
 ---
 name: mapa-de-chatty
-description: Usala la primera vez que este Claude trabaja con el conector de Chatty (el WhatsApp del negocio), antes de diseñar cualquier rutina, informe o digest, y cuando el mapa guardado quedó viejo. Arma el retrato del negocio leyendo la configuración (qué vende, cómo está armada la escalera comercial, si hay agente de IA, qué workflows corren y con qué tiempos), el inventario de lo que está realmente cableado (plantillas aprobadas, listas y audiencias, campañas, archivos, agenda, calendario) y recién al final el volumen de la cola. Lo deja escrito en `chatty/mapa.md`. Es una pasada de SÓLO LECTURA: no manda ni un mensaje.
+description: Usala la primera vez que este Claude trabaja con el conector de Chatty (el WhatsApp del negocio), antes de diseñar cualquier rutina, informe o digest, y cuando el mapa guardado quedó viejo. Arma el retrato del negocio leyendo la configuración (qué vende, cómo está armada la escalera comercial, si hay agente de IA, qué workflows corren y con qué tiempos), el inventario de lo que está realmente cableado (plantillas aprobadas, listas y audiencias, campañas, archivos, agenda, calendario) y recién al final el volumen de la cola. Lo deja escrito en un archivo del dueño, que no es necesariamente el directorio desde donde se la llamó. Es una pasada de SÓLO LECTURA: no manda ni un mensaje.
 ---
 
 # El mapa de la empresa en Chatty
@@ -114,7 +114,28 @@ La regla: si un número viene de menos que todo, se escribe con la muestra pegad
 
 ## Dónde queda el mapa
 
-En el proyecto del cliente, en `chatty/mapa.md`, **con la fecha adentro**. No se vuelve a derivar en cada sesión: cuesta plata, y sobre todo el dueño tiene que poder corregir a mano lo que entendiste mal, que es la mitad del valor de escribirlo.
+⚠️ **El directorio desde el que te llamaron casi nunca es el lugar.** El mapa es un documento comercial del dueño; la sesión, en cambio, puede estar parada en cualquier lado. Ya pasó dos veces: la corrida arrancó desde un repo de código que no tiene nada que ver con la empresa mapeada, y el retrato comercial quedó guardado adentro de ese repo. Nadie borra un archivo así, y medio año después es un archivo que nadie entiende por qué está ahí. **Escribir en el cwd es una decisión, no el default.**
+
+Esto no es una receta con pasos fijos, es un criterio con un orden:
+
+**1. Mirá la libreta antes que nada.** `~/chatty/donde-viven-los-mapas.md` es el único lugar que no depende de dónde estés parado. Si ya hay una línea para esta empresa, escribí ahí y no preguntes nada: evitar esa pregunta es todo el motivo por el que la libreta existe.
+
+**2. Si no hay línea, fijate si el directorio donde estás tiene algo que ver con la empresa que acabás de mapear.** Miralo de verdad: el nombre del directorio, el README, el remoto de git, de qué habla lo que hay adentro. Si es el proyecto del negocio, el cwd está bien. Si es un repo de desarrollo de otra cosa, el proyecto de otro cliente, o una carpeta de paso, no lo está.
+
+**3. Cuando no lo está, proponé un lugar y preguntá UNA sola vez.** La sugerencia por defecto es `~/chatty/`, que es donde ya vive la libreta y no le ensucia el repo a nadie. Al dueño casi siempre le da igual cuál sea mientras no quede perdido; lo que no le da igual es que se lo preguntes en cada corrida.
+
+**4. Anotá la respuesta en la libreta**, la haya elegido él o la hayas sugerido vos y él aceptado. Una línea por empresa, y si el archivo no existe, crealo:
+
+```markdown
+# Dónde viven los mapas de Chatty
+| Empresa | Archivo | Relevado |
+|---|---|---|
+| Panadería El Sol | ~/chatty/mapa-panaderia-el-sol.md | 2026-09-14 |
+```
+
+**El nombre del archivo lleva a la empresa adentro: `mapa-<empresa>.md`.** Dos motivos, los dos prácticos: dos empresas distintas no se pisan, y un archivo suelto se reconoce sin abrirlo. Un `mapa.md` pelado, tres meses después, no le dice nada a nadie. Si te encontrás un `chatty/mapa.md` viejo de una corrida anterior, tratalo como el mapa de esta empresa si el contenido coincide, y aprovechá para renombrarlo y anotarlo en la libreta.
+
+El archivo va **con la fecha adentro**. No se vuelve a derivar en cada sesión: cuesta plata, y sobre todo el dueño tiene que poder corregir a mano lo que entendiste mal, que es la mitad del valor de escribirlo.
 
 El archivo sigue el mismo orden que la pasada, y por el mismo motivo: primero el negocio, después el volumen.
 
@@ -180,6 +201,6 @@ Contale el retrato primero, en dos o tres frases y hablado, no el archivo entero
 
 Recién después, y en una o dos frases más, lo que te llamó la atención del volumen, y siempre atado a lo anterior cuando la configuración lo explique.
 
-Cerrá pidiéndole que corrija lo que esté mal en `chatty/mapa.md` y ofreciendo `rutinas-de-chatty`, que es lo que convierte esta foto en algo que trabaja.
+Cerrá diciéndole la ruta exacta donde quedó el archivo, pidiéndole que corrija ahí lo que esté mal, y ofreciendo `rutinas-de-chatty`, que es lo que convierte esta foto en algo que trabaja.
 
 El detalle de qué dice y qué no dice cada tool de lectura (los campos que mienten si los leés rápido) está en `references/lo-que-cada-tool-dice.md`. Leelo cuando vayas a apoyar una conclusión en un campo puntual.

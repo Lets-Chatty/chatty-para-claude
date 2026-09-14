@@ -19,7 +19,7 @@ La plantilla sale de una rutina real que funciona hace meses en un negocio de ve
 # <nombre de la rutina>
 Contesta: <qué pregunta del negocio contesta>.
 Se corre: <cadencia>.
-Escrita sobre el mapa del <fecha de chatty/mapa.md>.
+Escrita sobre el mapa del <fecha del mapa>.
 
 Revisá la actividad comercial de los últimos <N> días en Chatty y marcá los
 prospectos que ameritan que se meta <quién: el dueño, el socio, quien sea>.
@@ -27,7 +27,7 @@ prospectos que ameritan que se meta <quién: el dueño, el socio, quien sea>.
 Escribí el informe entero en <idioma>.
 
 ## Antes de empezar
-Leé `chatty/rutinas/<nombre>.estado.md`. Ahí está lo que marcaste la última vez
+Leé `<nombre>.estado.md`, al lado de este archivo. Ahí está lo que marcaste la última vez
 y cuándo. El informe abre con qué cambió desde entonces: quién se movió, quién
 sigue igual, quién entró nuevo, quién salió.
 
@@ -72,7 +72,7 @@ Si no hay ninguno que cumpla los criterios, decilo en una línea y terminá ahí
 No completes la tabla con casos flojos para que no quede vacía.
 
 ## Al terminar
-Actualizá `chatty/rutinas/<nombre>.estado.md` con los marcados de hoy y la fecha.
+Actualizá `<nombre>.estado.md` con los marcados de hoy y la fecha.
 <Si el dueño pidió que aterrice en algún lado: mostrale el texto y pedile
 confirmación antes de mandarlo. Nombrá acá la herramienta exacta que lo manda.>
 ```

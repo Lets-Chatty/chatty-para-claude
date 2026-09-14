@@ -1,6 +1,6 @@
 ---
 name: rutinas-de-chatty
-description: Usala cuando el dueño quiera que su Claude le revise el WhatsApp del negocio de forma repetida (un informe diario, un repaso semanal de prospectos, un digest de la cola, "avisame de lo que se me está escapando") o cuando pida armar, ajustar o probar una rutina sobre el conector de Chatty. Entrevista al dueño para que la rutina quede escrita con SUS criterios, le agrega el andamiaje que él no tiene por qué saber que hace falta, y la deja probada contra sus datos reales en `chatty/rutinas/`.
+description: Usala cuando el dueño quiera que su Claude le revise el WhatsApp del negocio de forma repetida (un informe diario, un repaso semanal de prospectos, un digest de la cola, "avisame de lo que se me está escapando") o cuando pida armar, ajustar o probar una rutina sobre el conector de Chatty. Entrevista al dueño para que la rutina quede escrita con SUS criterios, le agrega el andamiaje que él no tiene por qué saber que hace falta, y la deja probada contra sus datos reales, guardada al lado del mapa del dueño.
 ---
 
 # Escribir la rutina del dueño, no darle la de otro
@@ -11,7 +11,7 @@ Tu trabajo acá es sacárselo, no reemplazarlo. Si le entregás una rutina gené
 
 ## 1. Leé el mapa antes de abrir la boca
 
-Buscá `chatty/mapa.md`. Si no existe, corré primero la skill `mapa-de-chatty` y volvé: sin mapa esta entrevista es un formulario en blanco y las respuestas van a ser "no sé".
+**El mapa no vive necesariamente donde estás parado**, así que no concluyas que no existe porque no está en el cwd. Mirá primero la libreta, `~/chatty/donde-viven-los-mapas.md`, que es lo único que no depende del directorio y dice, por empresa, en qué archivo quedó. Si no hay libreta, buscá un `mapa-*.md` o un `chatty/mapa.md` viejo por acá. Si no existe en ningún lado, corré primero la skill `mapa-de-chatty` y volvé: sin mapa esta entrevista es un formulario en blanco y las respuestas van a ser "no sé".
 
 Si existe pero tiene más de un mes, decilo antes de empezar y ofrecé refrescarlo. Una rutina construida sobre un inventario viejo promete cosas que la empresa ya no tiene (o se pierde las que consiguió).
 
@@ -51,7 +51,7 @@ El dueño no tiene por qué saber que esto hace falta. Va en toda rutina que esc
 6. **El caso vacío, con permiso explícito de volver sin nada.** "Si no hay ninguno que cumpla estos criterios, decilo en una línea y listo." Es la instrucción más sofisticada de todas y la que más se omite: sin ella, a un modelo al que le pediste ocho columnas se las vas a encontrar llenas.
 7. **Qué está prohibido inferir.** Nombrá los campos que salen de texto libre de un chat (cuánto factura, cuántas consultas recibe, qué presupuesto tiene) y dejá escrito que si el cliente no lo dijo, va "no especificado".
 8. **Una ventana temporal concreta.** "Reciente" no es una fecha: cada corrida mira algo distinto y nadie se entera. Escribí "los últimos 30 días" o "desde la última corrida".
-9. **Memoria entre corridas.** La rutina lee y después actualiza un archivo de estado (`chatty/rutinas/<nombre>.estado.md`) con qué marcó y cuándo, y el informe abre con **qué cambió desde la última vez**. Sin esto el mismo prospecto aparece idéntico cinco lunes seguidos y el digest deja de leerse. Es, de lejos, lo que más define si la rutina sobrevive al mes.
+9. **Memoria entre corridas.** La rutina lee y después actualiza un archivo de estado (`<nombre>.estado.md`, al lado de la rutina) con qué marcó y cuándo, y el informe abre con **qué cambió desde la última vez**. Sin esto el mismo prospecto aparece idéntico cinco lunes seguidos y el digest deja de leerse. Es, de lejos, lo que más define si la rutina sobrevive al mes.
 10. **Confirmación antes de cualquier acción hacia afuera.** Si la rutina termina publicando en Slack, mandando un WhatsApp o disparando una campaña, tiene que pedir la confirmación del dueño en el momento, con el texto a la vista. Puede parecer de más en una rutina que el dueño escribió para sí mismo, pero no lo es: una acción que sale de la empresa se confirma.
 11. **Sólo lectura salvo que el dueño haya pedido lo contrario, explícitamente.** Una rutina de informe se escribe con las 17 tools de lectura que lista `mapa-de-chatty`. Si la rutina manda algo, nombrá exactamente qué tool lo manda y a quién le llega.
 
@@ -77,7 +77,7 @@ Si la prueba vuelve vacía, no la arregles bajando el criterio: confirmá con é
 
 ## Dónde queda
 
-En `chatty/rutinas/<nombre>.md`, escrita como un prompt autosuficiente: nada de "como hablamos recién". Quien la corre dentro de dos meses puede ser una sesión en blanco o una tarea programada, y tiene que alcanzar con el archivo. Al lado, su `<nombre>.estado.md`, que escribe la propia rutina.
+En una carpeta `rutinas/` **al lado del mapa**, no en el directorio desde el que te llamaron: si el mapa tuvo que salir de acá porque este no era su lugar, la rutina tampoco lo es, y separarlos deja al dueño con sus cosas de Chatty en dos lados. O sea `<la carpeta del mapa>/rutinas/<nombre>.md`, escrita como un prompt autosuficiente: nada de "como hablamos recién". Quien la corre dentro de dos meses puede ser una sesión en blanco o una tarea programada, y tiene que alcanzar con el archivo. Al lado, su `<nombre>.estado.md`, que escribe la propia rutina.
 
 Arriba de todo del archivo, tres líneas: qué contesta, cada cuánto se corre, y de qué fecha es el mapa sobre el que se escribió.
 
