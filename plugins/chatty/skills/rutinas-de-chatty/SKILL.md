@@ -67,6 +67,23 @@ Preguntala siempre, temprano, porque cambia la forma entera de la rutina. Si no 
 
 Un tope duro es una instrucción de la rutina, no una sugerencia: "como máximo cinco, si hay más quedate con los cinco más urgentes y decí cuántos quedaron afuera".
 
+## 4 bis. Dónde la lee: en la pantalla, o en su propio WhatsApp
+
+Preguntalo, porque cambia dónde termina la rutina. Una rutina que el dueño tiene que venir a buscar abriendo una conversación con vos compite todas las mañanas con el resto de su día, y pierde.
+
+**Si la quiere en su WhatsApp**, no hace falta nada raro: el conector ya manda mensajes. El único requisito es que su número personal sea un contacto de su propia cuenta, y eso lo resuelve él en diez segundos:
+
+> Desde tu celular, escribile **una vez** al número de WhatsApp de tu negocio. Con eso alcanza.
+
+Ese mensaje crea el chat, y desde ahí la rutina te contesta ahí mismo con `chat_reenviar`, pasándole su número.
+
+⚠️ **Dos cosas que hay que decirle de frente, no descubrirlas después:**
+
+- **`chat_reenviar` se NIEGA si ese número no es todavía un contacto.** Es a propósito: así no puede mandarle un mensaje a un número inventado o equivocado. O sea que si el dueño no escribió primero, la rutina no falla en silencio: no manda nada y lo dice.
+- **WhatsApp sólo deja mandar texto libre a alguien que escribió en las últimas 24 horas.** Para el dueño que usa el asistente todos los días eso no se nota, porque le escribe seguido. Pero una rutina de las 8 de la mañana para alguien que no lo toca hace tres días **no va a salir**, y la rutina tiene que preverlo: si el envío no sale, dejá el resumen escrito igual donde el dueño lo pueda leer, y decile por qué no salió. Nunca des por enviado algo que no salió.
+
+Esto es sólo para avisarle **al dueño**. Escribirle a un cliente es otra cosa y tiene sus propias reglas.
+
 ## 5. Terminá con una corrida de prueba
 
 Corré la rutina recién escrita contra los datos reales del dueño, mostrale la salida, y preguntale exactamente esto: **"¿estos son los que vos hubieras marcado?"**.
