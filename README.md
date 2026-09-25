@@ -4,7 +4,13 @@ El conector de Chatty le da a tu Claude la capacidad de operar el WhatsApp del n
 
 ## Antes de instalar
 
-Necesitás el conector de Chatty ya conectado en tu Claude. El plugin no trae herramientas ni credenciales: es criterio sobre las herramientas que ya tenés. Sin el conector se instala igual y no tiene nada sobre qué trabajar.
+**El plugin trae la conexión a Chatty.** Al instalarlo, Claude Code suma el conector solo: la primera vez que lo uses se abre el navegador para que entres con tu cuenta de Chatty (o la crees, con 15 días gratis y sin tarjeta de crédito). No hay ninguna dirección que copiar ni ninguna clave que pegar.
+
+Si ya habías agregado el conector a mano con `claude mcp add`, te van a quedar dos conexiones al mismo lugar y cada herramienta repetida. Sacá la vieja con el nombre que le hayas puesto (el que se sugería era `asistente`):
+
+```
+claude mcp remove asistente
+```
 
 No esperes un número redondo de herramientas: el servidor esconde del listado lo que tu empresa no puede usar (el calendario, por ejemplo, si no tenés uno atado), así que tu conexión va a ofrecer menos de las que hay registradas. Contarlas es la primera línea del mapa, y el faltante es información sobre tu cuenta, no una conexión rota.
 
@@ -14,6 +20,8 @@ No esperes un número redondo de herramientas: el servidor esconde del listado l
 /plugin marketplace add Lets-Chatty/chatty-para-claude
 /plugin install chatty@chatty-para-claude
 ```
+
+Después abrí una sesión nueva, corré `/mcp` y autenticá `chatty`. Con eso, escribile «ayudame a arrancar con Chatty».
 
 ## Qué hacer primero
 
