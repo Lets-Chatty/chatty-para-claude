@@ -14,9 +14,9 @@ La pregunta que el dueño hace es casi siempre la misma, con otras palabras: *«
 `cuenta_ver()` te dice de dónde salen las ventas antes de buscarlas:
 
 - **`chatty_completo`**: la empresa usa embudos o carga ventas en Chatty. La venta es una etapa, una etiqueta o un registro de venta.
-- **`solo_conector`**: no hay nada de eso cargado. La venta sale de leer las conversaciones (paso 3b).
+- **`solo_conector`**: no hay nada de eso cargado. La venta sale de leer las conversaciones (paso 3b), y no hay nada que preguntarle al dueño: el informe cuenta solo lo que marques.
 
-Mirá también `definicion_de_venta`: si ya está, el dueño ya contestó la pregunta de la venta y no se la volvés a hacer.
+Mirá también `definicion_de_venta`: si ya está, el dueño ya contestó la pregunta de la venta y no se la volvés a hacer. En una cuenta `solo_conector` viene con origen `auto_solo_conector`: cuentan las ventas cargadas en Chatty y la etiqueta «Venta (detectada por Claude)», sin pregunta de por medio.
 
 ## 2. El informe del período
 
@@ -54,9 +54,17 @@ Las ventas salen de las conversaciones, y leerlas es tu trabajo, no el del dueñ
 2. Leé cada uno y decidí: compró o no. Si compró, la frase que lo muestra va en `evidencia`, textual. El monto sólo si la conversación lo dice; si lo decís, con la moneda. No infieras montos.
 3. `ventas_marcar` con **todos** los veredictos del lote, también los que no compraron: así no vuelven.
 4. Repetí desde 1 hasta que `devueltos` sea 0.
-5. `venta_definir(tipo="deteccion")` una vez, y `anuncios_resultados` de nuevo.
+5. `anuncios_resultados` de nuevo. En una cuenta `solo_conector` ya cuenta lo que marcaste; en una `chatty_completo` sin candidatas con datos, guardá antes `venta_definir(tipo="deteccion")`.
 
-Si los candidatos son muchos, avisale al dueño cuántos vas leyendo, y si hay casos dudosos marcalos como no compró y listalos aparte para que él confirme: una venta inventada ensucia el costo por venta de un anuncio que quizás no lo merece.
+**Lo que marcás queda escrito en el Chatty del dueño**, a la vista, no en una libreta tuya:
+
+- compró, con monto, en una cuenta `solo_conector` → una **venta cargada** en ese chat, sin producto, con el nombre «Venta detectada por Claude» y la frase que lo muestra;
+- compró sin monto, o en una cuenta `chatty_completo` (ahí las ventas las cargan ellos) → la etiqueta **«Venta (detectada por Claude)»**;
+- no compró → la etiqueta **«Sin venta (revisado por Claude)»**, para no volver a leerlo salvo que el cliente escriba de nuevo.
+
+Nada de eso le llega a ningún cliente, y todo se deshace desde el chat (borrar la venta, sacar la etiqueta). Contale al dueño lo que dice `resumen` en la respuesta, tal cual: tiene que saber que va a encontrar esas ventas y etiquetas en su Chatty. Si borra una venta que cargaste, esa venta no se vuelve a cargar; si una que cargaste no era, no la borres vos: decile que la borre desde el chat.
+
+Si los candidatos son muchos, avisale al dueño cuántos vas leyendo, y si hay casos dudosos marcalos como no compró y listalos aparte para que él confirme: una venta inventada ensucia el costo por venta de un anuncio que quizás no lo merece, y además queda cargada en su Chatty.
 
 ## 4. El gasto, del conector de Meta Ads
 
