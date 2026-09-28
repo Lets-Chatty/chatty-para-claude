@@ -1,7 +1,7 @@
 {
   "name": "chatty",
-  "description": "El conector de Chatty y el criterio para operar el WhatsApp del negocio con él: primero el mapa de la empresa (sólo lectura), después las rutinas que el dueño escribe con sus propios criterios.",
-  "version": "0.5.0",
+  "description": "El conector de Chatty y el criterio para operar el WhatsApp del negocio con él: el mapa de la empresa (sólo lectura), las rutinas que el dueño escribe con sus propios criterios, y qué anuncios de Meta traen leads y cuáles ventas, con su costo.",
+  "version": "0.6.0",
   "author": {
     "name": "Chatty",
     "email": "axel@letschatty.com"
@@ -13,7 +13,9 @@
     "whatsapp",
     "mcp",
     "ventas",
-    "rutinas"
+    "rutinas",
+    "anuncios",
+    "meta-ads"
   ],
   "mcpServers": {
     "chatty": {

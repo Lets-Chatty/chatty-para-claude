@@ -99,7 +99,7 @@ Los cinco motivos (`nunca_respondido`, `lead_sin_respuesta`, `silencio_post_info
 Esta sección existe para que no le prometas al dueño algo que este conector no puede dar. Lo que está afuera del alcance:
 
 - **El texto literal de los pasos de un workflow.** Vive en otro servicio de Chatty que este conector no habla. La `descripcion` te dice qué hace el workflow, no qué lee el cliente. Cuando importe la palabra exacta, preguntale al dueño.
-- **Cuántos chats hay en cada etapa del embudo.** `embudos_ver` da la estructura, no la población. Se lo pedís al dueño o que lo mire en su pantalla de CRM.
+- **Cuántos chats hay en cada etapa del embudo.** `embudos_ver` da la estructura, no la población. Fuera del mapa, la población sale de `audiencia_contar` (una llamada por etapa) y, para lo que vino de anuncios, de `anuncios_resultados`. No se la pidas al dueño ni lo mandes a mirarla en Chatty.
 - **Un catálogo de etiquetas.** No hay agregado de etiquetas: las etiquetas aparecen de a un chat, dentro de `chat_ver` o `pendientes_detail`. Las que sí podés nombrar con certeza son las que aparecen como disparadores o efectos en workflows y etapas, y esas valen mucho justamente porque son las que gobiernan el circuito.
 - **Un catálogo de productos.** Los productos aparecen por chat (en el contacto que devuelve `chat_ver`), no como lista de la empresa. Lo que sí podés nombrar es lo que aparezca nombrado en la configuración.
 - **Las plantillas más allá de cuarenta.** `plantillas_ver` confiesa un tope de 40 textos: las de más vienen sin texto y la propia respuesta lo aclara. De las pendientes de aprobación y las rechazadas sólo viaja el conteo.

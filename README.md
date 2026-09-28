@@ -39,6 +39,8 @@ El orden importa: sin mapa, la entrevista de la rutina es un formulario en blanc
 
 - **`mapa-de-chatty`** arma la foto de la empresa y el inventario de lo que se puede usar. Sólo lectura.
 - **`rutinas-de-chatty`** convierte esa foto en rutinas que trabajan: entrevista, andamiaje que vos no tenés por qué saber que hace falta, y una corrida de prueba contra tus datos.
+- **`anuncios-y-ventas`** contesta «¿qué anuncios me traen leads y cuáles ventas, y a qué costo?»: cruza lo que pasó en tu WhatsApp, anuncio por anuncio, con el gasto de cada anuncio en Meta, y te dice si los que más consultas traen son los que más venden.
+- **`whatsapp-del-negocio`** hace que las preguntas del día a día (qué tengo para responder, quién me escribió, cómo vienen las ventas) vayan derecho al conector, sin que Claude te pida datos ni te mande a mirar nada.
 
 ## El gasto de los anuncios: el conector de Meta (opcional, y no es de Chatty)
 

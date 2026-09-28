@@ -21,6 +21,8 @@ plugins/chatty/
   .claude-plugin/plugin.json        el manifiesto del plugin
   skills/mapa-de-chatty/            la foto de la empresa, sólo lectura
   skills/rutinas-de-chatty/         la entrevista que escribe las rutinas
+  skills/anuncios-y-ventas/         anuncios → leads → ventas, cruzado con el gasto de Meta
+  skills/whatsapp-del-negocio/      que las preguntas del día a día vayan al conector
 ```
 
 ⚠️ **El plugin va en `plugins/chatty/` y no en la raíz, y no es prolijidad.**
