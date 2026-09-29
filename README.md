@@ -75,4 +75,4 @@ No es el camino recomendado y no hace falta para nada de lo anterior. Si tu empr
 claude mcp add --transport http --client-id <META_APP_ID> meta-ads https://mcp.facebook.com/ads
 ```
 
-Todavía no hay una skill que cruce el gasto con las ventas: falta una pieza del lado de Chatty para que la atribución no quede coja. Por ahora el conector queda disponible y explicado, que es lo honesto.
+Con este conector autorizado, la skill **`anuncios-y-ventas`** cruza el gasto de cada anuncio con los leads y las ventas que ese anuncio trajo a tu WhatsApp, y te da el costo por lead y por venta. Sin él, el informe sale igual, pero sin la parte de costos.
