@@ -155,6 +155,12 @@ Relevado el <fecha>. Corregilo a mano cuando algo no sea así: este archivo le g
 - Frenos: <qué detiene una secuencia; por ejemplo, que conteste un humano>
 - Las etiquetas que gobiernan el recorrido: <las que aparecen como disparador o efecto>
 
+## Qué cuenta como venta
+<La respuesta del DUEÑO, no una deducción tuya: esta pasada no la pregunta ni la completa. La escribe la skill `anuncios-y-ventas` la primera vez que el dueño contesta, porque el conector de Chatty no la guarda. Hasta entonces queda "sin definir".>
+- Para el dueño: <en sus palabras; por ejemplo, "la etapa Seña pagada del embudo Ventas">
+- Para `anuncios_resultados`: venta=<etapas | etiquetas | registro | deteccion | registro_o_claude>, venta_ids=<[...] si hacen falta>
+- Desde: <fecha en que lo contestó>
+
 ## 2. Qué está cableado
 <Una capacidad puede existir y no servir porque falta la configuración. Esto decide qué rutinas son posibles.>
 - Tools disponibles en la conexión: <n>. No disponibles: <cuáles y qué implica>
@@ -197,6 +203,8 @@ El `company_id` va en el archivo con de dónde salió, arriba de todo o al pie, 
 - Cuando una rutina empieza a devolver cosas raras: suele ser el mapa viejo, no la rutina.
 - Cuando el dueño cuenta un cambio de operación (sumó gente, prendió la IA, cambió de embudo).
 - Nunca "por las dudas" al principio de cada sesión: para eso se escribió el archivo.
+
+Al rehacerlo, **copiá tal cual «Qué cuenta como venta» y «Correcciones del dueño»**: son respuestas del dueño, no salen de ninguna tool, y ningún otro lado las guarda. Si una etapa o etiqueta de «Qué cuenta como venta» ya no aparece en la configuración, no la borres: anotalo en «Lo que no pude establecer» para que se la vuelvan a preguntar.
 
 ## Cómo se cierra
 

@@ -7,7 +7,9 @@ description: Usala cuando el dueño pregunte por sus anuncios o campañas de Met
 
 La pregunta que el dueño hace es casi siempre la misma, con otras palabras: *«¿qué anuncios me traen más consultas, cuáles terminan en venta, cuánto me sale cada una, y coinciden?»*. Se contesta con dos o tres llamadas y una cuenta. Lo difícil no es la cuenta: es no inventar lo que no está y no mandar al dueño a buscar lo que las tools ya tienen.
 
-**Regla que no se negocia: nunca le pidas al dueño que se fije algo en Chatty** (el nombre de una fuente, qué etapa es la venta, cuántos llegaron a tal paso). Si lo necesitás, está en el conector. Lo único que el dueño sabe y los datos no dicen es **qué cuenta como venta en su negocio**, y eso se le pregunta UNA vez, bien armado, y queda guardado.
+**Regla que no se negocia: nunca le pidas al dueño que se fije algo en Chatty** (el nombre de una fuente, qué etapa es la venta, cuántos llegaron a tal paso). Si lo necesitás, está en el conector. Lo único que el dueño sabe y los datos no dicen es **qué cuenta como venta en su negocio**, y eso se le pregunta UNA vez, bien armado, y **lo guardás vos, de tu lado** (ver «Dónde queda qué cuenta como venta»).
+
+**El conector no guarda decisiones tuyas.** Te da acceso a Chatty y nada más: no recuerda entre sesiones qué te contestó el dueño. Qué cuenta como venta viaja en cada llamada a `anuncios_resultados` (`venta` + `venta_ids`), y lo tenés que recordar vos.
 
 ## 1. Qué tipo de cuenta es
 
@@ -16,7 +18,7 @@ La pregunta que el dueño hace es casi siempre la misma, con otras palabras: *«
 - **`chatty_completo`**: la empresa usa embudos o carga ventas en Chatty. La venta es una etapa, una etiqueta o un registro de venta.
 - **`solo_conector`**: no hay nada de eso cargado. La venta sale de leer las conversaciones (paso 3b), y no hay nada que preguntarle al dueño: el informe cuenta solo lo que marques.
 
-Mirá también `definicion_de_venta`: si ya está, el dueño ya contestó la pregunta de la venta y no se la volvés a hacer. En una cuenta `solo_conector` viene con origen `auto_solo_conector`: cuentan las ventas cargadas en Chatty y la etiqueta «Venta (detectada por Claude)», sin pregunta de por medio.
+En una cuenta `chatty_completo`, antes de preguntar nada, **buscá si ya lo sabés**: la sección «Qué cuenta como venta» del mapa de la empresa (en Claude Code), las instrucciones del proyecto o lo que recuerdes del dueño (en claude.ai). Si está, pasalo en `venta` + `venta_ids` y no le volvés a preguntar. En una cuenta `solo_conector` no hace falta: con `venta="auto"` cuentan las ventas cargadas en Chatty y la etiqueta «Venta (detectada por Claude)», sin pregunta de por medio.
 
 ## 2. El informe del período
 
@@ -27,7 +29,7 @@ Qué trae cada fila de `anuncios`, y cómo leerla:
 - **`leads_nuevos`**: chats que empezaron en el período, atribuidos al **primer** anuncio que los trajo. Una plantilla de reenganche posterior no le roba el lead al anuncio.
 - **`leads_que_vuelven`**: gente que ya había escrito antes y volvió por un anuncio en el período. Meta también la cuenta como conversación, así que para el costo por lead se suma.
 - **`etapas`**: cuántos de esos leads llegaron **alguna vez** a cada etapa del embudo (no dónde están hoy). Los nombres de las etapas están en `candidatas_de_venta`, con el mismo `id`.
-- **`ventas`** e **`ingresos`**: según la definición de venta. Los ingresos vienen por moneda: nunca sumes monedas distintas.
+- **`ventas`** e **`ingresos`**: según la venta que pasaste (`venta` en la respuesta dice cuál se usó). Los ingresos vienen por moneda: nunca sumes monedas distintas.
 
 Y además:
 
@@ -35,16 +37,26 @@ Y además:
 - **`cobertura.pct_con_ad_id`**: qué parte de los leads nuevos tiene anuncio identificado. **Va en la primera línea del informe.** Con 95% el cruce es sólido; con 60% decilo antes de sacar conclusiones.
 - **`siguiente_paso`**: si viene, hacelo antes de mostrar números.
 - **`truncado`**: si vino, algo se recortó para entrar (los anuncios más chicos, por ejemplo). Decilo.
+- **`advertencias`**: si dice que una etapa o etiqueta de la venta que pasaste no existe en la empresa, la definición que tenías guardada quedó vieja (alguien la borró o la renombró): mostrale al dueño las candidatas de nuevo y actualizá lo que guardaste.
 
 ## 3. Si todavía no se sabe qué es una venta
 
 ### 3a. Cuenta `chatty_completo`: una sola pregunta
 
-Con `venta_requiere_definicion: true` las ventas vienen en `null`. Armá **una** pregunta de opción múltiple con `candidatas_de_venta`, cada opción con su nombre y cuántos chats tiene, y en palabras del negocio:
+Si no lo encontraste en lo tuyo, `anuncios_resultados` con `venta="auto"` devuelve `venta: null` y las ventas en `null`. Armá **una** pregunta de opción múltiple con `candidatas_de_venta`, cada opción con su nombre y cuántos chats tiene, y en palabras del negocio:
 
 > Para contar ventas necesito saber qué es una venta para vos. En este período veo: la etapa «Seña pagada» (12 chats), la etapa «Presupuesto enviado» (85), la etiqueta «Cliente» (40). ¿Cuál de estas es una venta cerrada?
 
-Con la respuesta, `venta_definir(tipo, ids)` y volvé a llamar a `anuncios_resultados`. Una pregunta, no un cuestionario; y si el dueño duda entre dos, mostrá los dos resultados (se puede pedir el informe con una definición distinta sin guardarla) y que elija viendo los números.
+Con la respuesta, volvé a llamar a `anuncios_resultados` pasándola: `venta="etapas"` o `venta="etiquetas"` con los `id` de las candidatas en `venta_ids`, o `venta="registro"` si la venta es tener una venta cargada. Una pregunta, no un cuestionario; y si el dueño duda entre dos, mostrá los dos resultados (pedí el informe con cada una) y que elija viendo los números. Después, **guardá la respuesta** como dice la sección siguiente.
+
+### Dónde queda qué cuenta como venta
+
+Es una decisión del dueño y la recordás vos, nunca el conector:
+
+- **En Claude Code**: en el mapa de la empresa que arma la skill `mapa-de-chatty` (`mapa-<empresa>.md`; dónde está lo dice la libreta `~/chatty/donde-viven-los-mapas.md`), en la sección **«Qué cuenta como venta»**. Escribí qué eligió el dueño en sus palabras, el `venta` y los `venta_ids` exactos, y la fecha. Si todavía no hay mapa, crealo donde diga la libreta (o en `~/chatty/`, y anotalo en la libreta) con el encabezado y sólo esa sección: la próxima pasada del mapa completa el resto y la respeta.
+- **En claude.ai**: no hay archivos que duren. Sugerile al dueño que lo deje en las **instrucciones del proyecto** (por ejemplo: «En Chatty, una venta es la etapa "Seña pagada" del embudo Ventas»), o pedile permiso para recordarlo con tu memoria, si la tiene activada.
+
+Antes de la próxima pregunta de ventas, leé eso primero. Si el dueño cambia de idea, actualizalo ahí.
 
 ### 3b. Cuenta `solo_conector`, o ninguna candidata tiene datos: leer
 
@@ -54,7 +66,7 @@ Las ventas salen de las conversaciones, y leerlas es tu trabajo, no el del dueñ
 2. Leé cada uno y decidí: compró o no. Si compró, la frase que lo muestra va en `evidencia`, textual. El monto sólo si la conversación lo dice; si lo decís, con la moneda. No infieras montos.
 3. `ventas_marcar` con **todos** los veredictos del lote, también los que no compraron: así no vuelven.
 4. Repetí desde 1 hasta que `devueltos` sea 0.
-5. `anuncios_resultados` de nuevo. En una cuenta `solo_conector` ya cuenta lo que marcaste; en una `chatty_completo` sin candidatas con datos, guardá antes `venta_definir(tipo="deteccion")`.
+5. `anuncios_resultados` de nuevo. En una cuenta `solo_conector` ya cuenta lo que marcaste; en una `chatty_completo` sin candidatas con datos, pasá `venta="deteccion"` (sólo lo que marcaste vos) y guardalo como qué cuenta como venta, igual que en 3a.
 
 **Lo que marcás queda escrito en el Chatty del dueño**, a la vista, no en una libreta tuya:
 
