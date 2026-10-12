@@ -23,6 +23,7 @@ plugins/chatty/
   skills/rutinas-de-chatty/         la entrevista que escribe las rutinas
   skills/anuncios-y-ventas/         anuncios → leads → ventas, cruzado con el gasto de Meta
   skills/whatsapp-del-negocio/      que las preguntas del día a día vayan al conector
+  skills/probar-mi-chatty/          simular un cliente que escribe y ver cómo responde (chats de prueba)
 ```
 
 ⚠️ **El plugin va en `plugins/chatty/` y no en la raíz, y no es prolijidad.**
