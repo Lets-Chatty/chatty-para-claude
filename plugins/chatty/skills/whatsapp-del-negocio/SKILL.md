@@ -22,6 +22,7 @@ Si te falta un dato (una etapa, una fuente, cuántos hay en tal lado, qué dice 
 - **Leé antes de contestar**: el chat o el pendiente completo, no sólo la última línea.
 - **Proponé y pedí el OK.** Un mensaje a un cliente no se deshace. Mostrá el texto que mandarías y esperá el sí, salvo que el dueño ya te haya dicho exactamente qué mandar y a quién.
 - **Si el número está también en la app de WhatsApp Business del teléfono**, las filas traen un link para contestar a mano, gratis, desde el teléfono, aunque hayan pasado las 24 horas. Ofrecé eso primero.
+- **Con la ventana de 24 horas abierta**, por Chatty la respuesta sale directo, pero no digas "gratis" a secas: Meta da gratis las primeras 1.000 del mes por número y después cobra cada una a la tarifa de su país, la misma que la de utilidad ([precios oficiales](https://developers.facebook.com/documentation/business-messaging/whatsapp/pricing)).
 - **Con la ventana de 24 horas cerrada**, por Chatty hace falta una plantilla, que Meta cobra (no Chatty). Decí el costo aproximado antes de proponerla.
 - **Nunca le muestres nombres de campos ni ids** al dueño: traducilos a lo que significan.
 
