@@ -56,9 +56,9 @@ Chats parados hace semanas en una etapa que no es de cierre, gente marcada como 
 
 ## La ventana de 24 horas
 
-**Contesta:** a quién le podés escribir gratis todavía, y a quién ya le hace falta una plantilla paga.
+**Contesta:** a quién le podés escribir todavía sin plantilla, y a quién ya le hace falta una plantilla paga.
 
-Es la familia más barata de construir y la que más plata ahorra, porque el dato viene servido: cada fila de `pendientes_list` trae `free_text_window`, con `open: true` y las horas que quedan, `open: false` cuando la ventana se cerró, u `open: null` cuando no se pudo determinar, que se reporta como "no sé" y nunca como "gratis".
+Es la familia más barata de construir y la que más plata ahorra, porque el dato viene servido: cada fila de `pendientes_list` trae `free_text_window`, con `open: true` y las horas que quedan, `open: false` cuando la ventana se cerró, u `open: null` cuando no se pudo determinar, que se reporta como "no sé" y nunca como "abierta". Y abierta tampoco quiere decir gratis: desde el 1 de octubre de 2026 Meta da gratis las primeras 1.000 respuestas del mes por número y cobra las siguientes a la tarifa de utilidad del país ([precios oficiales](https://developers.facebook.com/documentation/business-messaging/whatsapp/pricing)). Lo que se contesta a mano desde la app de WhatsApp Business del teléfono sigue siendo gratis.
 
 **Se pregunta:** a quién vale la pena alcanzar antes de que se cierre la ventana (o sea, qué hace que un chat sea recuperable para él).
 
