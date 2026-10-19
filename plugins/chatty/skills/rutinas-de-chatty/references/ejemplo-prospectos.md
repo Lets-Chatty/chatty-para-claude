@@ -81,13 +81,12 @@ confirmación antes de mandarlo. Nombrá acá la herramienta exacta que lo manda
 
 Con las de lectura que lista `mapa-de-chatty`, y en este orden:
 
-1. `pendientes_list(only_new=False, reasons=[...])` filtrando por los motivos que se parecen a las patologías que dijo el dueño. `senal_compra_sin_seguimiento` y `silencio_post_info` suelen ser el punto de partida de esta familia. Pedí un `limit` acorde al tope de la rutina, no doscientas filas para mostrar cinco.
-2. `pendientes_detail(pendiente_id)` sólo sobre los candidatos que van a entrar a la tabla. Ahí está el hilo (para el porqué), el estado CRM y `free_text_window`.
-3. `chat_ver` sólo si hace falta ir más atrás en la historia de un chat puntual.
+1. `chats_sin_leer()` para lo que entró en la última semana y nadie abrió, que es donde suelen estar los prospectos que todavía están del otro lado. Pedí un `limit` acorde al tope de la rutina, no cuarenta filas para mostrar cinco.
+2. `chat_ver(chat_id)` sólo sobre los candidatos que van a entrar a la tabla. Ahí está el hilo (para el porqué) y el estado CRM; si hace falta ir más atrás en la historia, pedí un `tail` mayor de ese chat puntual.
 
-Antes de recomendar cualquier próximo paso que implique escribirle a alguien, mirá `automations_in_flight` de la fila y, si la cosa es fina, `programados_ver(chat_id)`: recomendarle al dueño que salude a alguien que ya tiene un mensaje nuestro en camino lo deja pagando.
+Antes de recomendar cualquier próximo paso que implique escribirle a alguien, mirá `programados_ver(chat_id)`: recomendarle al dueño que salude a alguien que ya tiene un mensaje nuestro en camino lo deja pagando.
 
-Y mirá `free_text_window` antes de prometer un contacto. Con la ventana cerrada, escribirle a esa persona cuesta una plantilla paga que además tiene que aceptar, así que el próximo paso honesto es otro. Si el mapa dice que la empresa no tiene plantillas aprobadas, esos prospectos directamente no son alcanzables por WhatsApp y hay que decirlo en el informe en vez de recomendar algo imposible.
+Y mirá `ventana_24h` antes de prometer un contacto. Con la ventana cerrada, escribirle a esa persona cuesta una plantilla paga que además tiene que aceptar, así que el próximo paso honesto es otro. Si el mapa dice que la empresa no tiene plantillas aprobadas, esos prospectos directamente no son alcanzables por WhatsApp y hay que decirlo en el informe en vez de recomendar algo imposible.
 
 ## Por qué cada pieza está donde está
 

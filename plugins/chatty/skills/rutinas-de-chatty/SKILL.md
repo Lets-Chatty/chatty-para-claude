@@ -15,7 +15,7 @@ Tu trabajo acá es sacárselo, no reemplazarlo. Si le entregás una rutina gené
 
 Si existe pero tiene más de un mes, decilo antes de empezar y ofrecé refrescarlo. Una rutina construida sobre un inventario viejo promete cosas que la empresa ya no tiene (o se pierde las que consiguió).
 
-Del mapa sacás, sin preguntar nada: el `company_id` para los links, el tamaño y los motivos de la cola, si hay plantillas aprobadas (si no hay, cualquier rutina que quiera alcanzar gente con la ventana cerrada es imposible y hay que decirlo ahí mismo), si hay embudos, listas, audiencias, campañas, archivos, calendario, y cuántas tools tiene realmente esta conexión.
+Del mapa sacás, sin preguntar nada: el `company_id` para los links, cuántos chats sin leer hay, si hay plantillas aprobadas (si no hay, cualquier rutina que quiera alcanzar gente con la ventana cerrada es imposible y hay que decirlo ahí mismo), si hay embudos, listas, audiencias, campañas, archivos, calendario, y cuántas tools tiene realmente esta conexión.
 
 ## 2. Preguntá sólo lo que los datos no pueden contestar
 
@@ -53,7 +53,7 @@ El dueño no tiene por qué saber que esto hace falta. Va en toda rutina que esc
 8. **Una ventana temporal concreta.** "Reciente" no es una fecha: cada corrida mira algo distinto y nadie se entera. Escribí "los últimos 30 días" o "desde la última corrida".
 9. **Memoria entre corridas.** La rutina lee y después actualiza un archivo de estado (`<nombre>.estado.md`, al lado de la rutina) con qué marcó y cuándo, y el informe abre con **qué cambió desde la última vez**. Sin esto el mismo prospecto aparece idéntico cinco lunes seguidos y el digest deja de leerse. Es, de lejos, lo que más define si la rutina sobrevive al mes.
 10. **Confirmación antes de cualquier acción hacia afuera.** Si la rutina termina publicando en Slack, mandando un WhatsApp o disparando una campaña, tiene que pedir la confirmación del dueño en el momento, con el texto a la vista. Puede parecer de más en una rutina que el dueño escribió para sí mismo, pero no lo es: una acción que sale de la empresa se confirma.
-11. **Sólo lectura salvo que el dueño haya pedido lo contrario, explícitamente.** Una rutina de informe se escribe con las 17 tools de lectura que lista `mapa-de-chatty`. Si la rutina manda algo, nombrá exactamente qué tool lo manda y a quién le llega.
+11. **Sólo lectura salvo que el dueño haya pedido lo contrario, explícitamente.** Una rutina de informe se escribe con las tools de lectura que lista `mapa-de-chatty`. Si la rutina manda algo, nombrá exactamente qué tool lo manda y a quién le llega.
 
 ## 4. Cadencia y tope son la misma decisión
 

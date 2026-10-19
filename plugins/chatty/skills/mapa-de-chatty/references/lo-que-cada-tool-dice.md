@@ -2,39 +2,22 @@
 
 Referencia para cuando vayas a apoyar una afirmación del mapa en un campo concreto. Todo lo de acá describe lo que documenta cada tool del conector: si alguna vez algo no coincide, gana lo que diga la descripción de la tool que tengas a la vista.
 
-## `pendientes_list(limit, only_new, reasons)`
-
-Es la cola que escribe un barrido automático leyendo señales de los chats, no una lista que armó una persona.
-
-- Los agregados viven en `summary`, no en las filas. `summary.total` / `total_matching` es cuántas filas matchearon; `returned` cuántas vinieron; `truncated: true` que lo que ves es un pedazo. Pedí `limit` chico para los números.
-- `only_new=True` (el default) es sólo lo nuevo desde el último aviso, que suele ser un puñado. Para el tamaño real de la cola va `only_new=False`, y eso se hace una vez, no en cada pregunta.
-- `reasons` filtra del lado del servidor. Un valor desconocido da 400, así que un typo nunca se confunde con "no hay resultados". Con filtro aplicado, los conteos de `summary.by_reason` quedan reducidos a las filas que matchearon: un motivo que no pediste puede aparecer ahí (los chats traen varios) pero no con el total real de la empresa.
-- Los cinco motivos se solapan y no suman el total.
-- `free_text_window` por fila: `{"open": true, "hours_left": n}` una respuesta de texto sale directo, sin plantilla, pero **no es gratis sin más**: desde el 1 de octubre de 2026 Meta da gratis las primeras 1.000 respuestas del mes por número de WhatsApp de la empresa y después cobra cada una a la tarifa del país del cliente, la misma que la de un mensaje de utilidad (lo cobra Meta, no Chatty; [precios oficiales](https://developers.facebook.com/documentation/business-messaging/whatsapp/pricing)). Cuántas lleva la empresa en el mes no lo dice ninguna tool: no lo inventes. `{"open": false}` la ventana de 24 horas de WhatsApp se cerró y alcanzar a esa persona cuesta una plantilla paga que además tiene que aceptar; `{"open": null}` no se pudo determinar, y ahí se dice "no sé", no se asume que está abierta.
-- `automations_in_flight`: algo ya puede estar en camino hacia ese cliente.
-- `needs_thread_read: true`: el último mensaje fue audio o imagen, no hay texto para juzgar.
-
-⚠️ `nunca_respondido` no significa "nunca les respondimos". Significa que el último mensaje del cliente quedó sin respuesta y que ningún workflow corrió nunca sobre ese chat, o sea que nadie los va a alcanzar salvo que lo haga una persona. En empresas reales, muchos de esos chats tienen meses o años de conversación atendida. Para afirmar que alguien realmente nunca recibió respuesta hay que leer el hilo y confirmar que no hay ningún mensaje entrante después de nuestro primer saliente real, contando sólo mensajes reales y nunca los de `type: "central"`, que son notas del sistema ("chat archivado", "workflow agregado") que el cliente jamás vio.
-
-⚠️ Y antes de interpretar cualquier conteo de esta tool, leé la configuración. Es habitual que la etapa terminal de un embudo, o el workflow de cierre automático, se llamen casi igual que un motivo de la cola y produzcan exactamente esos chats: lo que parece un abandono masivo suele ser el final diseñado del propio recorrido de la empresa. Si el nombre de una etapa o de un workflow se parece sospechosamente al motivo, escribilo como pregunta para el dueño y no como diagnóstico.
-
-## `pendientes_detail(pendiente_id, tail)`
-
-El hilo completo (más viejo primero, sin notificaciones del sistema), lo que ya está programado para salir, qué workflows corrieron, la sugerencia pendiente si hay, el estado CRM del chat (etiquetas, productos, etapa del embudo) y `free_text_window`. Es el único lugar de las 17 donde ves etiquetas de a un chat sin gastar un `chat_ver`.
-
 ## `chats_sin_leer(limit)`
 
-Previews de los chats sin leer, ordenados por lo más reciente, con nombre, texto del último mensaje y fecha. Está capado del lado del cliente: si pediste 40 y vinieron 40, lo que sabés es "40 o más".
+Previews de los chats sin leer, ordenados por lo más reciente, con nombre, texto del último mensaje y fecha. Está capado del lado del cliente: si pediste 40 y vinieron 40, lo que sabés es "40 o más". Por default mira la última semana; `ventana.mas_viejos` dice cuántos sin leer quedaron afuera por ser más viejos.
+
+- `ventana_24h` por fila es una frase, no un campo para repetir. Abierta quiere decir que una respuesta de texto sale directo, sin plantilla, pero **no es gratis sin más**: desde el 1 de octubre de 2026 Meta da gratis las primeras 1.000 respuestas del mes por número de WhatsApp de la empresa y después cobra cada una a la tarifa del país del cliente, la misma que la de un mensaje de utilidad (lo cobra Meta, no Chatty; [precios oficiales](https://developers.facebook.com/documentation/business-messaging/whatsapp/pricing)). Cuántas lleva la empresa en el mes no lo dice ninguna tool: no lo inventes. Cerrada quiere decir que la ventana de 24 horas de WhatsApp se cerró y alcanzar a esa persona cuesta una plantilla paga que además tiene que aceptar. Si no se sabe, se dice "no sé", no se asume que está abierta.
+- Sin leer no es lo mismo que sin contestar: un chat que alguien abrió y no contestó no aparece acá.
 
 ## `chat_ver(chat_id, tail)`
 
-Contacto (etiquetas, productos, ventas) más el hilo. Caro y puntual: sirve para contestar una pregunta concreta, no para caracterizar a la empresa. Las etiquetas y los productos vienen del contacto, o sea de a un chat: no hay catálogo de etiquetas ni de productos en ninguna de las 17, así que lo que se puede nombrar con certeza es lo que aparezca en la configuración.
+Contacto (etiquetas, productos, ventas) más el hilo. Caro y puntual: sirve para contestar una pregunta concreta, no para caracterizar a la empresa. Las etiquetas y los productos vienen del contacto, o sea de a un chat: no hay catálogo de etiquetas ni de productos en ninguna de las de lectura, así que lo que se puede nombrar con certeza es lo que aparezca en la configuración.
 
 ## `embudos_ver(funnel_id)`
 
 Por etapa: id, nombre, orden, si cierra el embudo, y `al_entrar` con los efectos concretos y los ids resueltos a nombres.
 
-**Las etapas en orden SON la escalera comercial de la empresa**, y los nombres que les puso dicen cómo entiende su propio recorrido, desde el primer contacto hasta el cierre o el descarte. Leelas como retrato del negocio y no sólo como estructura de datos: es de las dos llamadas que más cuentan del mapa. Ojo con la etapa terminal, porque suele explicar un pico raro en la cola de pendientes.
+**Las etapas en orden SON la escalera comercial de la empresa**, y los nombres que les puso dicen cómo entiende su propio recorrido, desde el primer contacto hasta el cierre o el descarte. Leelas como retrato del negocio y no sólo como estructura de datos: es de las dos llamadas que más cuentan del mapa. Ojo con la etapa terminal, porque suele explicar un pico raro de chats que parecen abandonados.
 
 - `puede_enviar_mensajes: true` quiere decir que mover un chat ahí puede terminar en un mensaje al cliente. Tratá ese movimiento como una acción hacia afuera.
 - `configuracion_leida: false` quiere decir que no se pudo leer la configuración entera, así que "no tiene automatizaciones" NO quedó establecido. En ese caso `puede_enviar_mensajes` viene en `true` a propósito: suponer que el silencio es seguro es exactamente como se le manda un mensaje a alguien sin querer. Las etapas que fallaron están en `resolucion_incompleta`.
@@ -66,7 +49,7 @@ Un borrador viejo sin mandar es un hallazgo del mapa, no un detalle: alguien dej
 
 ## `plantillas_ver()`
 
-Las aprobadas por Meta que Chatty puede enviar, con el texto real (encabezado, cuerpo con sus huecos `{{1}}`, pie y botones). Las aprobadas que Chatty no puede mandar (carrusel, multimedia no soportada) salen aparte con el motivo, y no se le ofrecen al dueño como opción. De pendientes y rechazadas sólo viaja el conteo.
+Las aprobadas por Meta que Chatty puede enviar, con el texto real (encabezado, cuerpo con sus huecos, pie y botones). Los huecos pueden ser numerados (`{{1}}`, `{{2}}`) o con nombre (`{{nombre}}`): las que tienen nombre traen `formato_variables: "con_nombre"`, `nombres_variables` y `como_completarlas`, y se mandan con `variables` como diccionario `{nombre: valor}` en vez de como lista. Las aprobadas que Chatty no puede mandar (carrusel, multimedia no soportada) salen aparte con el motivo, y no se le ofrecen al dueño como opción. De pendientes y rechazadas sólo viaja el conteo.
 
 Tope confesado de 40 textos: las filas de más vienen sin texto y la propia respuesta lo aclara en `ojo`. No completa variables ni manda nada.
 
@@ -78,7 +61,7 @@ La biblioteca de la empresa con la URL de cada archivo. `tipo` acepta imagen, au
 
 ## `agenda_ver(chat_id)`
 
-Los recordatorios que escribió una persona, con fecha. **No es la cola de pendientes**: la cola la escribe el barrido leyendo señales y se resuelve sola cuando el chat deja de calificar; la agenda la escribe alguien, tiene fecha, y no se resuelve nunca sola. No mezcles las dos listas al contestar ni sumes sus números.
+Los recordatorios que escribió una persona, con fecha. La agenda la escribe alguien, tiene fecha, y no se resuelve nunca sola. No la mezcles con los chats sin leer al contestar ni sumes sus números.
 
 ## `list_pending_drafts(limit)`
 
@@ -93,7 +76,3 @@ Qué pasaría si importaras esos números, sin importar nada. No tiene lugar en 
 Existen sólo si la empresa tiene un calendario de Google atado. Si no lo tiene, el servidor las saca del listado a propósito, porque una capacidad que está en el catálogo y falla al usarse es peor que una que no se ofrece. Que falten es un dato del inventario.
 
 Cuando están: `calendar_check_availability` devuelve huecos libres reales con `start`/`end` exactos en la zona horaria del negocio, y esos strings se copian tal cual, nunca se construye ni se ajusta una fecha a mano. Mirar es todo lo que se puede hacer con un turno ya agendado: no hay ninguna tool acá que mueva ni cancele uno, así que no le prometas a nadie un cambio de turno.
-
-## `pendientes_sweep_now()`
-
-Vuelve a barrer la casilla ahora, ignorando la ventana de horario configurada. Escribe en nuestra propia cola y no le manda nada a nadie, por eso está del lado de las de leer. Usala cuando la cola parece vieja o cuando el dueño dice que lo que ve no puede ser, y después volvé a pedir `pendientes_list`.
