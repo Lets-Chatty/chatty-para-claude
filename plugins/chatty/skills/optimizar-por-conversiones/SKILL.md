@@ -5,7 +5,7 @@ description: Usala cuando el dueño quiera que Meta optimice sus anuncios por lo
 
 # Que Meta optimice por tus ventas reales
 
-Un anuncio que lleva a WhatsApp, por defecto, se optimiza para conseguir **conversaciones**: Meta aprende a traer gente que escribe, no gente que compra. La API de Conversiones sirve para cambiar eso: Chatty le avisa a Meta cuándo una consulta terminó en venta (**compra**) o cuándo el dueño la marcó como buena (**lead calificado**), y Meta usa esas señales para aprender qué gente le conviene al negocio.
+Un anuncio que lleva a WhatsApp, por defecto, se optimiza para conseguir **conversaciones**: Meta aprende a traer gente que escribe, no gente que compra. La API de Conversiones sirve para cambiar eso: Chatty le avisa a Meta cuándo una consulta terminó en venta (**compra**) o cuándo el dueño la marcó como buena (**lead calificado**). La optimización que se pudo comprobar es la de **compras**: Meta usa esas ventas para aprender qué gente le conviene al negocio. Los leads buenos se envían igual y quedan a la vista, pero no hay un objetivo de WhatsApp comprobado para optimizar por ellos.
 
 Tres cosas tienen que ser ciertas antes de prometer nada, y las tres se miran en el paso 1:
 
@@ -57,7 +57,13 @@ Los eventos pueden tardar en aparecer del lado de Meta. No te asustes ni lo des 
 Esto lo hace el conector de Meta Ads, no el de Chatty. Si sus tools no aparecen es porque el dueño no lo autorizó: decí que sin eso podés dejar los eventos funcionando pero no tocar la campaña.
 
 1. **Mirá cómo está la campaña hoy**: cuenta, campaña, conjunto de anuncios, con qué objetivo y a qué destino (WhatsApp). Preguntá cuál si hay varias.
-2. **Qué objetivo de optimización se puede usar depende del objetivo de la campaña y de la cuenta.** No lo des por hecho ni lo busques de memoria: **probalo en borrador** y leé lo que contesta Meta. Si rechaza el cambio, decile al dueño el motivo tal cual lo dice Meta, y proponé quedarse con optimizar por conversaciones: los eventos igual se siguen acumulando y se pueden medir, y Meta puede habilitar más opciones cuando junte volumen.
+2. **El objetivo de optimización que corresponde es «compras por mensajería»** (en la API, `MESSAGING_PURCHASE_CONVERSION`), con destino WhatsApp y la página de Facebook del negocio como `promoted_object`. No lleva el dataset ni ningún id de Chatty: el vínculo con los eventos lo hace Meta por la cuenta de WhatsApp. Lo que se comprobó creando conjuntos de anuncios de prueba (pausados, ya borrados):
+   - **Campaña de interacción (`OUTCOME_ENGAGEMENT`)**: Meta aceptó «compras por mensajería».
+   - **Campaña de ventas (`OUTCOME_SALES`)**: Meta lo rechazó («el objetivo no está disponible con el objetivo de tu campaña», error 2490408), aunque su propia lista de objetivos válidos lo incluye. **No te fíes de esa lista**: la validación real es crear el conjunto.
+   - **Campaña de clientes potenciales (`OUTCOME_LEADS`) con «leads de calidad»** y destino WhatsApp: rechazado. Ese objetivo es para formularios, no para chats de WhatsApp. Para WhatsApp, en esa campaña solo sirve optimizar por conversaciones.
+   - **«Conversiones del sitio web» (`OFFSITE_CONVERSIONS`)** pide un píxel o una app: no sirve para eventos que vienen del chat.
+
+   Esa prueba mostró que Meta acepta crear el conjunto; **no mostró que entregue ni que aprenda**, porque eso depende de que lleguen suficientes eventos. Si al crear el conjunto Meta rechaza el objetivo en la cuenta del dueño, decile el motivo tal cual lo dice Meta y proponé quedarte en optimizar por conversaciones: los eventos igual se siguen acumulando y se pueden medir, y Meta puede habilitarlo cuando junte volumen. **Para los leads buenos no encontré un objetivo propio de WhatsApp que se pueda elegir:** lo único que se comprobó como objetivo es el de compras. Los leads buenos igual se envían y quedan a la vista del dueño en el administrador de eventos de Meta, pero no le prometas que Meta optimice por ellos.
 3. **Mostrá el antes y el después** (qué se optimizaba, qué se va a optimizar, qué no cambia) y esperá el OK explícito. **No actives nada sin ese OK**: activar publica y empieza a gastar.
 4. **Avisale de un costo escondido**: cambiar el objetivo de un conjunto que ya está andando puede reiniciar la fase de aprendizaje de Meta, y los resultados de los primeros días van a ser peores antes de mejorar. Si el conjunto es bueno hoy, preguntale si prefiere duplicarlo y probar en paralelo.
 5. **No toques el presupuesto, el público ni los anuncios** salvo que el dueño lo pida.
