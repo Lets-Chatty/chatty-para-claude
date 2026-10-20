@@ -41,6 +41,13 @@ El orden importa: sin mapa, la entrevista de la rutina es un formulario en blanc
 - **`rutinas-de-chatty`** convierte esa foto en rutinas que trabajan: entrevista, andamiaje que vos no tenés por qué saber que hace falta, y una corrida de prueba contra tus datos.
 - **`anuncios-y-ventas`** contesta «¿qué anuncios me traen leads y cuáles ventas, y a qué costo?»: cruza lo que pasó en tu WhatsApp, anuncio por anuncio, con el gasto de cada anuncio en Meta, y te dice si los que más consultas traen son los que más venden.
 - **`whatsapp-del-negocio`** hace que las preguntas del día a día (qué tengo para responder, quién me escribió, cómo vienen las ventas) vayan derecho al conector, sin que Claude te pida datos ni te mande a mirar nada.
+- **`probar-mi-chatty`** escribe como si fuera un cliente y te muestra qué contesta tu Chatty, sin que le llegue nada a nadie por WhatsApp.
+- **`optimizar-por-conversiones`** revisa que tus ventas y tus consultas buenas le lleguen a Meta, y prepara el cambio de tus campañas para que Meta busque gente que compra. Nada se publica sin tu OK.
+- **`flujo-de-atencion`** arma con vos el flujo de atención: la bienvenida, el horario y el aviso de cerrado, qué se le contesta a cada tipo de consulta y qué pasa si no responden. Lo prueba con chats de prueba y lo activa sólo cuando le decís que sí. El flujo de atención está en beta: si tu empresa todavía no lo tiene, Claude te lo va a decir.
+
+## Si usás Claude en el navegador o en la app de escritorio
+
+Los plugins son de Claude Code. En Claude (web o escritorio) cada skill se sube por separado, como un `.zip`: los armamos a partir de este repo y los podés bajar, con los pasos para subirlos, desde tu cuenta en [whatsapp.letschatty.com](https://whatsapp.letschatty.com/analytics#skills).
 
 ## El gasto de los anuncios: el conector de Meta (opcional, y no es de Chatty)
 

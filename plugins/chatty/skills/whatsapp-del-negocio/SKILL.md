@@ -1,6 +1,10 @@
 ---
 name: whatsapp-del-negocio
-description: Usala cuando el dueño pregunte cualquier cosa sobre el WhatsApp de su negocio, sus clientes o sus ventas — «¿qué tengo para responder?», «¿quién me escribió?», «¿qué quedó pendiente?», «¿a quién le tengo que hacer seguimiento?», «respondele a…», «¿cuántos clientes…?», «¿cómo vinieron las ventas?», «¿por qué no me compran?», consultas, leads, prospectos, presupuestos, cobros por WhatsApp. Todo eso se contesta con el conector de Chatty, que ya es su cuenta: no hace falta preguntarle qué sistema usa ni pedirle ningún dato de la empresa.
+description: "Usala cuando el dueño pregunte cualquier cosa sobre el WhatsApp de su negocio, sus clientes o sus ventas — «¿qué tengo para responder?», «¿quién me escribió?», «¿qué quedó pendiente?», «¿a quién le tengo que hacer seguimiento?», «respondele a…», «¿cuántos clientes…?», «¿cómo vinieron las ventas?», «¿por qué no me compran?», consultas, leads, prospectos, presupuestos, cobros por WhatsApp. Todo eso se contesta con el conector de Chatty, que ya es su cuenta: no hace falta preguntarle qué sistema usa ni pedirle ningún dato de la empresa."
+metadata:
+  titulo: "Tu WhatsApp, sin vueltas"
+  frase: "¿Qué tengo para responder?"
+  resumen: "Hace que las preguntas del día a día (qué quedó sin responder, quién te escribió, cómo vienen las ventas) vayan derecho a tu WhatsApp, sin que Claude te pida datos ni te mande a mirar nada."
 ---
 
 # El WhatsApp del negocio, desde Claude

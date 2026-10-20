@@ -1,6 +1,10 @@
 ---
 name: rutinas-de-chatty
 description: Usala cuando el dueño quiera que su Claude le revise el WhatsApp del negocio de forma repetida (un informe diario, un repaso semanal de prospectos, un digest de la cola, "avisame de lo que se me está escapando") o cuando pida armar, ajustar o probar una rutina sobre el conector de Chatty. Entrevista al dueño para que la rutina quede escrita con SUS criterios, le agrega el andamiaje que él no tiene por qué saber que hace falta, y la deja probada contra sus datos reales, guardada al lado del mapa del dueño.
+metadata:
+  titulo: "Tus propias rutinas de revisión"
+  frase: "Quiero una rutina para revisar la mañana."
+  resumen: "Te entrevista para que las rutinas las escribas vos: qué querés mirar, cada cuánto y qué te tiene que traer resumido. Queda escrita con tus criterios y probada contra tus datos."
 ---
 
 # Escribir la rutina del dueño, no darle la de otro

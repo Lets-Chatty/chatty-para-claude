@@ -1,6 +1,10 @@
 ---
 name: anuncios-y-ventas
 description: Usala cuando el dueño pregunte por sus anuncios o campañas de Meta (Facebook, Instagram, click-to-WhatsApp) y lo que le dejan — qué anuncios traen más leads o consultas, qué anuncio vende, cuáles traen ventas, costo por lead, costo por venta, ROAS, si los que más leads traen son los que más venden, en qué anuncio poner la plata o cuál apagar. Cruza lo que pasó en el WhatsApp del negocio (conector de Chatty, por anuncio) con el gasto de cada anuncio (conector de Meta Ads), unidos por el id del anuncio, y termina en una tabla, un veredicto y sugerencias concretas. Sin mandarle al dueño a buscar nada en Chatty.
+metadata:
+  titulo: "Qué anuncios te venden"
+  frase: "¿Qué anuncios me traen ventas?"
+  resumen: "Cruza lo que pasó en tu WhatsApp, anuncio por anuncio, con lo que gastaste en Meta: cuánto te sale cada consulta y cada venta, y si los que más consultas traen son los que más venden."
 ---
 
 # Qué anuncios traen leads y cuáles traen ventas
