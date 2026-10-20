@@ -1,6 +1,10 @@
 ---
 name: optimizar-por-conversiones
 description: Usala cuando el dueño quiera que Meta optimice sus anuncios por lo que pasa de verdad en su WhatsApp, y no sólo por conversaciones iniciadas — «que Meta aprenda de mis ventas», «optimizar por compras», «configurar la API de Conversiones», «mandarle a Meta las ventas y los leads buenos», «mis anuncios traen consultas pero no venden», «¿llegan los eventos a Meta?», «marcá este lead como bueno». Revisa si los eventos de compra y de lead calificado llegan a Meta, los activa, los alimenta con las ventas y los leads buenos reales, y prepara el cambio en la campaña con el conector de Meta Ads, siempre en borrador y con el OK del dueño. No promete resultados ni números mínimos que no pueda verificar.
+metadata:
+  titulo: "Que Meta aprenda de tus ventas"
+  frase: "Quiero que Meta optimice por mis ventas."
+  resumen: "Revisa que tus ventas y tus consultas buenas le lleguen a Meta y prepara el cambio de tus campañas para que busque gente que compra, no sólo gente que escribe. Nada se publica sin tu OK."
 ---
 
 # Que Meta optimice por tus ventas reales

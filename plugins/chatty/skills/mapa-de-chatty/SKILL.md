@@ -1,6 +1,10 @@
 ---
 name: mapa-de-chatty
-description: Usala la primera vez que este Claude trabaja con el conector de Chatty (el WhatsApp del negocio), antes de diseñar cualquier rutina, informe o digest, y cuando el mapa guardado quedó viejo. Arma el retrato del negocio leyendo la configuración (qué vende, cómo está armada la escalera comercial, si hay agente de IA, qué workflows corren y con qué tiempos), el inventario de lo que está realmente cableado (plantillas aprobadas, listas y audiencias, campañas, archivos, agenda, calendario) y recién al final el volumen de chats. Lo deja escrito en un archivo del dueño, que no es necesariamente el directorio desde donde se la llamó. Es una pasada de SÓLO LECTURA: no manda ni un mensaje.
+description: "Usala la primera vez que este Claude trabaja con el conector de Chatty (el WhatsApp del negocio), antes de diseñar cualquier rutina, informe o digest, y cuando el mapa guardado quedó viejo. Arma el retrato del negocio leyendo la configuración (qué vende, cómo está armada la escalera comercial, si hay agente de IA, qué workflows corren y con qué tiempos), el inventario de lo que está realmente cableado (plantillas aprobadas, listas y audiencias, campañas, archivos, agenda, calendario) y recién al final el volumen de chats. Lo deja escrito en un archivo del dueño, que no es necesariamente el directorio desde donde se la llamó. Es una pasada de SÓLO LECTURA: no manda ni un mensaje."
+metadata:
+  titulo: "El mapa de tu empresa"
+  frase: "Armame el mapa de mi Chatty."
+  resumen: "Una pasada de sólo lectura que arma el retrato de tu negocio: qué vendés, cómo está armado el recorrido comercial, qué automatizaciones corren y con qué tiempos, si tenés un agente de IA, y recién al final cuántos chats esperan. No manda ni un mensaje."
 ---
 
 # El mapa de la empresa en Chatty

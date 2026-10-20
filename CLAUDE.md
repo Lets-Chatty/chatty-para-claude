@@ -25,6 +25,7 @@ plugins/chatty/
   skills/whatsapp-del-negocio/      que las preguntas del día a día vayan al conector
   skills/probar-mi-chatty/          simular un cliente que escribe y ver cómo responde (chats de prueba)
   skills/optimizar-por-conversiones/ que Meta optimice por las ventas y leads buenos reales (API de Conversiones)
+  skills/flujo-de-atencion/         armar con el dueño el flujo de atención (bienvenida, horario, motivos, seguimientos), probarlo y activarlo
 ```
 
 ⚠️ **El plugin va en `plugins/chatty/` y no en la raíz, y no es prolijidad.**
@@ -62,6 +63,14 @@ es el único camino que reproduce lo que le pasa a alguien de afuera.
 - La tabla de tools de sólo lectura de `mapa-de-chatty` **sí** es un contrato
   explícito y se mantiene a mano: es lo que impide que un diagnóstico le mande
   un WhatsApp a la cartera del dueño.
+
+## Cada skill también se baja suelta, como `.zip`
+
+En Claude (web o escritorio) no hay plugins: cada skill se sube por separado como un `.zip`. El sitio del Conector arma esos `.zip` a partir de ESTE repo (una ref configurable, `main` por defecto) cada vez que se publica, y muestra una tarjeta por skill. Tres consecuencias para el que escribe acá:
+
+- **El frontmatter tiene que ser YAML estricto.** Claude Code perdona un `description` sin comillas que tenga `: ` adentro; el validador de la subida de skills, no. Ante la duda, entre comillas dobles. `name` en minúsculas con guiones, hasta 64, igual al nombre de la carpeta; `description` hasta 1024 caracteres y sin `<` ni `>`. El armado del sitio falla si alguna no cumple, a propósito.
+- **`metadata` es lo que ve el dueño en la tarjeta**: `titulo`, `frase` (con qué se la pide a Claude) y `resumen` (qué hace, dicho para el dueño y no para Claude, que para eso está el `description`). Una skill sin `metadata` se publica igual, con su nombre pelado.
+- **Lo que esté en la carpeta de la skill va en el `.zip`**, nada más: una skill que dependa de un archivo de otra carpeta queda rota al subirla sola.
 
 ## Sin bump de versión, el cambio no le llega a nadie
 

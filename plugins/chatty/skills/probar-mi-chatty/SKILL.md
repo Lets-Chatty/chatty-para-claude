@@ -1,6 +1,10 @@
 ---
 name: probar-mi-chatty
 description: Usala cuando el dueño quiera ver cómo respondería su Chatty sin que le llegue nada a un cliente real — «probá qué pasa si alguien pregunta por precios», «¿mi agente contesta bien esto?», «simulá un cliente que escribe», «¿en qué etapa cae una consulta nueva?», «quiero testear mi configuración antes de prenderla». Explica que es una simulación (no envía nada a WhatsApp), cómo hacerla con las tools de chats de prueba, cómo leer lo que respondió y qué efectos colaterales avisar.
+metadata:
+  titulo: "Probá tu Chatty sin clientes reales"
+  frase: "Simulá un cliente que pregunta precios."
+  resumen: "Escribe como si fuera un cliente y te muestra qué contesta tu Chatty, sin que le llegue nada a nadie por WhatsApp."
 ---
 
 # Probar cómo respondería tu Chatty
