@@ -35,7 +35,7 @@ Una prueba útil casi nunca es un solo mensaje. Armá un recorrido corto de dos 
 
 ## Límites (decíselos si los pisa)
 
-- **Sólo texto.** No se puede probar el envío de imágenes, audios ni documentos.
+- **Archivos: sólo desde un link.** El «cliente» de prueba puede mandar una imagen, un video, un audio o un documento (por ejemplo, una foto de un comprobante o un PDF), pasando `archivo_url` en `prueba_chat_enviar`: un link https público o la dirección de un archivo que ya está en la biblioteca de Chatty (`archivos_ver`). Un archivo que el dueño tiene en su computadora o adjunto en esta conversación no puede viajar por acá: pedile que lo suba a la biblioteca de Chatty (o a un link) y usá esa dirección. El texto que escribas va de pie de foto; un audio no lleva pie, así que el texto llega como mensaje aparte. Topes: imagen 5 MB, audio y video 16 MB, documento 25 MB.
 - **Necesita un WhatsApp conectado.** Sin número, la tool lo dice y no inventa nada: ahí el camino es conectarlo primero.
 - **Sólo escribe en chats de prueba.** Nunca en una conversación real, aunque el dueño te pase el id de una: la tool lo rechaza.
 - **No es un ensayo del envío.** Sirve para ver qué decide y qué dice tu Chatty. No prueba cómo se vería el mensaje en el teléfono de un cliente ni la entrega de Meta.
