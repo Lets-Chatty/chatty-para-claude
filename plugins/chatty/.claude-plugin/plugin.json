@@ -1,7 +1,7 @@
 {
   "name": "chatty",
   "description": "El conector de Chatty y el criterio para operar el WhatsApp del negocio con él: el mapa de la empresa (sólo lectura), las rutinas que el dueño escribe con sus propios criterios, qué anuncios de Meta traen leads y cuáles ventas, con su costo, y el flujo de atención armado con el dueño.",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "author": {
     "name": "Chatty",
     "email": "axel@letschatty.com"
