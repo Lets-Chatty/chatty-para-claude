@@ -101,11 +101,12 @@ nueva y el problema desaparece solo.
 Reinstalar sobre la misma versión no sirve: o se bumpea, o se desinstala y se
 vuelve a instalar.
 
-## El conector de Meta va declarado en el `plugin.json`
+## Los conectores van declarados en el `plugin.json`
 
-El plugin declara un servidor MCP remoto, el de Meta Ads, en el campo `mcpServers`
-del manifiesto. Es lo único que trae el plugin además de skills, y existe porque
-el gasto de publicidad es lo único grande que Chatty no sabe.
+El plugin declara dos servidores MCP remotos en el campo `mcpServers` del
+manifiesto, y es lo único que trae además de skills: `chatty`, el conector de
+Chatty (el servicio público del asistente), y `meta-ads`, el de Meta Ads. El de
+Meta existe porque el gasto de publicidad es lo único grande que Chatty no sabe.
 
 ```json
 "mcpServers": { "meta-ads": { "type": "http", "url": "https://mcp.facebook.com/ads" } }
